@@ -1,0 +1,31 @@
+{
+  "name": "solidity",
+  "version": "1.0.0",
+  "description": "smart-contract folder for checkoutdao",
+  "main": "index.js",
+  "scripts": {
+    "test": "hardhat test --network hardhat",
+    "compile": "hardhat compile",
+    "verify": "hardhat verify"
+  },
+  "author": "@rube-de",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers",
+    "hardhat": "^2.11.2",
+    "@typechain/ethers-v5": "^10.1.0",
+    "@typechain/hardhat": "^6.1.2",
+    "@types/mocha": "^9.1.0",
+    "chai": "^4.2.0",
+    "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "ethers": "^5.4.4",
+    "hardhat-deploy": "^0.9.0"
+  }
+}
