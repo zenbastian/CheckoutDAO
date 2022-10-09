@@ -1,0 +1,14 @@
+{
+  "name": "chromeextnav-master",
+  "version": "1.0.0",
+  "description": "Min Chrome Extension - Navigating rbc in content.js",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@metamask/detect-provider": "^2.0.0"
+  }
+}
