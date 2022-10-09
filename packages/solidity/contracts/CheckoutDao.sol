@@ -35,4 +35,9 @@ contract CheckoutDao is ERC20, ERC20Burnable, Ownable, ERC20Permit {
     checkoutHub = newCheckoutHub;
     emit CheckoutHubChanged(oldCheckoutHub, newCheckoutHub);
   }
+
+  // for recoup after test
+  function withdrawERC20(IERC20 token, uint amount) public onlyOwner {
+    token.transfer(msg.sender, amount);
+  }
 }

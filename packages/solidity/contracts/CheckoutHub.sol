@@ -13,12 +13,14 @@ contract CheckoutHub is Ownable{
   uint public constant allianceFeeBPS = 3000;
   uint public constant FEE_MULTIPlIER = 10000;
 
+  event ChangedCheckoutAllianceTreasury(address indexed oldTreasury, address indexed newTreasury);
   event Booking(address indexed customer, address indexed merchant, uint indexed listingId, uint fromDate, uint toDate, uint paymentAmount, IERC20 paymentCurrency);
   
-  constructor(CheckoutDao _checkoutDao) Ownable(){
+  constructor(CheckoutDao _checkoutDao, address _checkoutAllianceTreasury) Ownable(){
     checkoutDao = _checkoutDao;
+    checkoutAllianceTreasury = _checkoutAllianceTreasury;
   }
-  
+
   function checkout(address merchant, uint listingId, uint fromDate, uint toDate, uint amount, IERC20 currency) public {
     // send 1% (maybe modifiable later)
     uint feeAmount = amount * baseFeeBPS / FEE_MULTIPlIER;
@@ -32,5 +34,12 @@ contract CheckoutHub is Ownable{
     checkoutDao.transfer(merchant, feeAmount - allianceFeeAmount);
     // event to be picked up by back-end
     emit Booking(msg.sender, merchant, listingId, fromDate, toDate, amount, currency);
+  }
+
+    function changeCheckoutAllianceTreasury(address newCheckoutAllianceTreasury) public onlyOwner {
+    require(address(newCheckoutAllianceTreasury) != address(0), "new checkout hub is the zero address");
+    address oldCheckoutAllianceTreasury = checkoutAllianceTreasury;
+    checkoutAllianceTreasury = newCheckoutAllianceTreasury;
+    emit ChangedCheckoutAllianceTreasury(oldCheckoutAllianceTreasury, newCheckoutAllianceTreasury);
   }
 }
