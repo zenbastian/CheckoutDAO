@@ -1,0 +1,20 @@
+
+Current obtained from scanning your video demo scan:
+{"merchantName":"My Best Flower Shop","merchantSite":"","merchantEmail":"myshop@flowers.ca","products":[{"name":"A bunch of random flowers","description":"Hand picked bouqet?","price":"30.55","id":0},{"name":"Daisies","description":"Bulk, come in a bunch of 10-12","price":"10.99","id":1},{"name":"Sweet potato and tamarind","description":"","price":"20.99","id":2}],"sessionId":"","cartProducts":[{"name":"A bunch of random flowers","description":"Hand picked bouqet?","price":"30.55","id":0,"quantity":0},{"name":"Daisies","description":"Bulk, come in a bunch of 10-12","price":"10.99","id":1,"quantity":0},{"name":"Sweet potato and tamarind","description":"","price":"20.99","id":2,"quantity":5}],"cartTotal":104.94999999999999,"previousCartTotal":83.96}
+
+Notes:
+Change price from JSON string to JSON int value? (fails in app atm as price = a swift Double type)
+
+Mandatory fields right now:
+Cart model fields: merchantEmail, products, cartProducts, cartTotal
+Product model fields: name, price
+all other fields are optional.
+
+Should we add to or remove any of these mandatories?
+
+Aside:
+Should we sanitize inputs to JSON on front end before generating qr? (+ will fail if improper in app)
+
+V2 possibilities:
+Allow merchants to add image(s) per product.
+Allow merchants to add logo.
