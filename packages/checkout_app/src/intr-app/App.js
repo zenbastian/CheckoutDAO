@@ -34,7 +34,8 @@ function App () {
       // }
       // This function detects most providers injected at window.ethereum
       // const provider = await detectEthereumProvider();
-      let chainId = '0x89'
+      //let chainId = '0x89' //polygon
+      let chainId = '0x13881' //mumbai
       // chainId = web3.utils.toHex(chainId);
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
@@ -42,8 +43,11 @@ function App () {
       });
       let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
+      //const currencyAddress = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063" // polygon
+      const currencyAddress = "0xe11A86849d99F524cAC3E7A0Ec1241828e332C62" // mumbai
+
       const contractInstance = new ethers.Contract(address, abi, signer)
-      const ercInstance = new ethers.Contract("0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063", ercabi, signer)
+      const ercInstance = new ethers.Contract(currencyAddress, ercabi, signer)
 
 
       console.log('contractInstance:')
@@ -53,7 +57,7 @@ function App () {
   
       let tx = await ercInstance.approve(address, price)
 
-      let tx2 = await contractInstance.checkout('0xb60e8dd61c5d32be8058bb8eb970870f07233155', 12341, Math.floor(Date.now() / 1000) ,  Math.floor(Date.now() / 1000) + 2 , price, '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063')
+      let tx2 = await contractInstance.checkout('0x0aa5ec627C8Ab686704dCe70457DBb6161572212', 12341, Math.floor(Date.now() / 1000) ,  Math.floor(Date.now() / 1000) + 2 , price, currencyAddress)
     }
     catch(e) {
       console.log('error', e)

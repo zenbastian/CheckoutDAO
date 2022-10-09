@@ -29,7 +29,7 @@ module.exports = async function ({ ethers, deployments, getNamedAccounts }) {
 
   // set the hub in the cdao token
   checkoutDaoContract = await ethers.getContract("CheckoutDao");
-  checkoutDaoContract.connect(deployerSigner).changeCheckoutHub(address);
+  await checkoutDaoContract.connect(deployerSigner).changeCheckoutHub(address);
 };
 
 module.exports.tags = ["CheckoutHub"]
