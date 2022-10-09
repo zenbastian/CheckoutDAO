@@ -115,7 +115,7 @@ module.exports = {
       saveDeployments: true,
     },
     mumbai: {
-      url: 'https://rpc-mumbai.maticvigil.com/',
+      url: 'https://rpc-mumbai.maticvigil.com',
       accounts: accounts("mumbai"),
       chainId: 80001,
       live: true,
@@ -127,13 +127,7 @@ module.exports = {
   },
   namedAccounts: {
     deployer: {
-      default: 0,
-      3: 1,
-      4: 1,
-      5: 1,
-      42: 1,
-      69: 1,
-      420: 1
+      default: 0
     },
   },
   solidity: {
@@ -148,5 +142,11 @@ module.exports = {
         },
       },
     ],
-  }
+  },
+  paths: {
+    sources: "./contracts",
+    tests: "./test",
+    cache: "./cache",
+    artifacts: "./artifacts",
+  },
 };

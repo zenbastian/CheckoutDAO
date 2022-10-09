@@ -8,11 +8,11 @@ module.exports = async function ({ ethers, deployments, getNamedAccounts }) {
   //const cdaoStable = "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"; //dai optimism (also goerli)
 
 
-  const feeData = await ethers.provider.getFeeData();
+  //const feeData = await ethers.provider.getFeeData();
 
    // get max fees from gas station
-  let maxFeePerGas = ethers.BigNumber.from(32000000000) // fallback to 40 gwei
-  let maxPriorityFeePerGas = ethers.BigNumber.from(32000000000) // fallback to 40 gwei
+  let maxFeePerGas = ethers.BigNumber.from(50000000000) // fallback to 40 gwei
+  let maxPriorityFeePerGas = ethers.BigNumber.from(50000000000) // fallback to 40 gwei
   try {
     const { data } = await axios({
         method: 'get',
@@ -43,9 +43,11 @@ module.exports = async function ({ ethers, deployments, getNamedAccounts }) {
   });
 
 
-  // auto verify on etherscan
-  await hre.run("etherscan-verify", {
-  });
+  if (network.name != "hardhat") {
+    // auto verify on etherscan
+    await hre.run("etherscan-verify", {
+    });
+  }
 };
 
 module.exports.tags = ["CheckoutDao"];

@@ -7,11 +7,11 @@ module.exports = async function ({ ethers, deployments, getNamedAccounts }) {
   const checkoutDao = await deployments.get("CheckoutDao");
 
 
-  const feeData = await ethers.provider.getFeeData();
+  //const feeData = await ethers.provider.getFeeData();
 
    // get max fees from gas station
-  let maxFeePerGas = ethers.BigNumber.from(32000000000) // fallback to 40 gwei
-  let maxPriorityFeePerGas = ethers.BigNumber.from(32000000000) // fallback to 40 gwei
+  let maxFeePerGas = ethers.BigNumber.from(45000000000) // fallback to 40 gwei
+  let maxPriorityFeePerGas = ethers.BigNumber.from(45000000000) // fallback to 40 gwei
   try {
     const { data } = await axios({
         method: 'get',
@@ -43,9 +43,11 @@ module.exports = async function ({ ethers, deployments, getNamedAccounts }) {
   });
 
 
-  // auto verify on etherscan
-  await hre.run("etherscan-verify", {
-  });
+  if (network.name != "hardhat") {
+    // auto verify on etherscan
+    await hre.run("etherscan-verify", {
+    });
+  }
 
   // set the hub in the cdao token
   checkoutDaoContract = await ethers.getContract("CheckoutDao");
