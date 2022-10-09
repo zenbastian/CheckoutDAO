@@ -123,6 +123,11 @@ module.exports = {
       tags: ['staging'],
       gasMultiplier: 2,
     },
+    boba: {
+      url: 'https://rinkeby.boba.network/',
+      accounts: accounts("boba"),
+      deploy: ['deploy_optimism']
+    }
 
   },
   namedAccounts: {
